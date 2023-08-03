@@ -14,7 +14,7 @@ class DataSource {
     }
     Hive
       ..init(hiveDir.path)
-      ..registerAdapter<PokemonHiveModel>(PokemonHiveModelAdapter());
+      ..registerAdapter<PokemonModel>(PokemonModelAdapter());
     await PokemonHiveRepository.openBox();
   }
 }

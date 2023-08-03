@@ -1,89 +1,223 @@
 import 'package:hive/hive.dart';
+import 'dart:convert';
 
 part 'pokemon.g.dart';
 
 @HiveType(typeId: 1)
-class PokemonHiveModel extends HiveObject {
-  static const String boxKey = 'pokemon';
-
-  @HiveField(0)
-  late String name;
+class PokemonModel {
+  static const boxKey = 'pokemon';
 
   @HiveField(1)
-  late String id;
-
+  String? name;
   @HiveField(2)
-  late String imageurl;
-
+  String? id;
   @HiveField(3)
-  late String xdescription;
-
+  String? imageurl;
   @HiveField(4)
-  late String ydescription;
-
+  String? xdescription;
   @HiveField(5)
-  late String height;
-
+  String? ydescription;
   @HiveField(6)
-  late String category;
-
+  String? height;
   @HiveField(7)
-  late String weight;
-
+  String? category;
   @HiveField(8)
-  late List<String> typeofpokemon;
-
+  String? weight;
   @HiveField(9)
-  late List<String> weaknesses;
-
+  List<String>? typeofpokemon;
   @HiveField(10)
-  late List<String> evolutions;
-
+  List<String>? weaknesses;
   @HiveField(11)
-  late List<String> abilities;
-
+  List<String>? evolutions;
   @HiveField(12)
-  late int hp;
-
+  List<String>? abilities;
   @HiveField(13)
-  late int attack;
-
+  int? hp;
   @HiveField(14)
-  late int defense;
-
+  int? attack;
   @HiveField(15)
-  late int special_attack;
-
+  int? defense;
   @HiveField(16)
-  late int special_defense;
-
+  int? specialAttack;
   @HiveField(17)
-  late int speed;
-
+  int? specialDefense;
   @HiveField(18)
-  late int total;
-
+  int? speed;
   @HiveField(19)
-  late String male_percentage;
-
+  int? total;
   @HiveField(20)
-  late String female_percentage;
-
+  String? malePercentage;
   @HiveField(21)
-  late int genderless;
-
+  String? femalePercentage;
   @HiveField(22)
-  late String cycles;
-
+  int? genderless;
   @HiveField(23)
-  late String egg_groups;
-
+  String? cycles;
   @HiveField(24)
-  late String evolvedfrom;
-
+  String? eggGroups;
   @HiveField(25)
-  late String reason;
-
+  String? evolvedfrom;
   @HiveField(26)
-  late String base_exp;
+  String? reason;
+  @HiveField(27)
+  String? baseExp;
+
+  PokemonModel({
+    this.name,
+    this.id,
+    this.imageurl,
+    this.xdescription,
+    this.ydescription,
+    this.height,
+    this.category,
+    this.weight,
+    this.typeofpokemon,
+    this.weaknesses,
+    this.evolutions,
+    this.abilities,
+    this.hp,
+    this.attack,
+    this.defense,
+    this.specialAttack,
+    this.specialDefense,
+    this.speed,
+    this.total,
+    this.malePercentage,
+    this.femalePercentage,
+    this.genderless,
+    this.cycles,
+    this.eggGroups,
+    this.evolvedfrom,
+    this.reason,
+    this.baseExp,
+  });
+
+  PokemonModel copyWith({
+    String? name,
+    String? id,
+    String? imageurl,
+    String? xdescription,
+    String? ydescription,
+    String? height,
+    String? category,
+    String? weight,
+    List<String>? typeofpokemon,
+    List<String>? weaknesses,
+    List<String>? evolutions,
+    List<String>? abilities,
+    int? hp,
+    int? attack,
+    int? defense,
+    int? specialAttack,
+    int? specialDefense,
+    int? speed,
+    int? total,
+    String? malePercentage,
+    String? femalePercentage,
+    int? genderless,
+    String? cycles,
+    String? eggGroups,
+    String? evolvedfrom,
+    String? reason,
+    String? baseExp,
+  }) =>
+      PokemonModel(
+        name: name ?? this.name,
+        id: id ?? this.id,
+        imageurl: imageurl ?? this.imageurl,
+        xdescription: xdescription ?? this.xdescription,
+        ydescription: ydescription ?? this.ydescription,
+        height: height ?? this.height,
+        category: category ?? this.category,
+        weight: weight ?? this.weight,
+        typeofpokemon: typeofpokemon ?? this.typeofpokemon,
+        weaknesses: weaknesses ?? this.weaknesses,
+        evolutions: evolutions ?? this.evolutions,
+        abilities: abilities ?? this.abilities,
+        hp: hp ?? this.hp,
+        attack: attack ?? this.attack,
+        defense: defense ?? this.defense,
+        specialAttack: specialAttack ?? this.specialAttack,
+        specialDefense: specialDefense ?? this.specialDefense,
+        speed: speed ?? this.speed,
+        total: total ?? this.total,
+        malePercentage: malePercentage ?? this.malePercentage,
+        femalePercentage: femalePercentage ?? this.femalePercentage,
+        genderless: genderless ?? this.genderless,
+        cycles: cycles ?? this.cycles,
+        eggGroups: eggGroups ?? this.eggGroups,
+        evolvedfrom: evolvedfrom ?? this.evolvedfrom,
+        reason: reason ?? this.reason,
+        baseExp: baseExp ?? this.baseExp,
+      );
+
+  factory PokemonModel.fromJson(String str) => PokemonModel.fromMap(json.decode(str));
+
+  String toJson() => json.encode(toMap());
+
+  factory PokemonModel.fromMap(Map<String, dynamic> json) => PokemonModel(
+        name: json["name"],
+        id: json["id"],
+        imageurl: json["imageurl"],
+        xdescription: json["xdescription"],
+        ydescription: json["ydescription"],
+        height: json["height"],
+        category: json["category"],
+        weight: json["weight"],
+        typeofpokemon: json["typeofpokemon"] == null
+            ? []
+            : List<String>.from(json["typeofpokemon"]!.map((x) => x)),
+        weaknesses:
+            json["weaknesses"] == null ? [] : List<String>.from(json["weaknesses"]!.map((x) => x)),
+        evolutions:
+            json["evolutions"] == null ? [] : List<String>.from(json["evolutions"]!.map((x) => x)),
+        abilities:
+            json["abilities"] == null ? [] : List<String>.from(json["abilities"]!.map((x) => x)),
+        hp: json["hp"],
+        attack: json["attack"],
+        defense: json["defense"],
+        specialAttack: json["special_attack"],
+        specialDefense: json["special_defense"],
+        speed: json["speed"],
+        total: json["total"],
+        malePercentage: json["male_percentage"],
+        femalePercentage: json["female_percentage"],
+        genderless: json["genderless"],
+        cycles: json["cycles"],
+        eggGroups: json["egg_groups"],
+        evolvedfrom: json["evolvedfrom"],
+        reason: json["reason"],
+        baseExp: json["base_exp"],
+      );
+
+  Map<String, dynamic> toMap() => {
+        "name": name,
+        "id": id,
+        "imageurl": imageurl,
+        "xdescription": xdescription,
+        "ydescription": ydescription,
+        "height": height,
+        "category": category,
+        "weight": weight,
+        "typeofpokemon":
+            typeofpokemon == null ? [] : List<dynamic>.from(typeofpokemon!.map((x) => x)),
+        "weaknesses": weaknesses == null ? [] : List<dynamic>.from(weaknesses!.map((x) => x)),
+        "evolutions": evolutions == null ? [] : List<dynamic>.from(evolutions!.map((x) => x)),
+        "abilities": abilities == null ? [] : List<dynamic>.from(abilities!.map((x) => x)),
+        "hp": hp,
+        "attack": attack,
+        "defense": defense,
+        "special_attack": specialAttack,
+        "special_defense": specialDefense,
+        "speed": speed,
+        "total": total,
+        "male_percentage": malePercentage,
+        "female_percentage": femalePercentage,
+        "genderless": genderless,
+        "cycles": cycles,
+        "egg_groups": eggGroups,
+        "evolvedfrom": evolvedfrom,
+        "reason": reason,
+        "base_exp": baseExp,
+      };
 }

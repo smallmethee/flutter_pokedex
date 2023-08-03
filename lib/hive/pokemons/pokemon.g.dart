@@ -6,104 +6,105 @@ part of 'pokemon.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class PokemonHiveModelAdapter extends TypeAdapter<PokemonHiveModel> {
+class PokemonModelAdapter extends TypeAdapter<PokemonModel> {
   @override
   final int typeId = 1;
 
   @override
-  PokemonHiveModel read(BinaryReader reader) {
+  PokemonModel read(BinaryReader reader) {
     final numOfFields = reader.readByte();
     final fields = <int, dynamic>{
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
-    return PokemonHiveModel()
-      ..name = fields[0] as String
-      ..id = fields[1] as String
-      ..imageurl = fields[2] as String
-      ..xdescription = fields[3] as String
-      ..ydescription = fields[4] as String
-      ..height = fields[5] as String
-      ..category = fields[6] as String
-      ..weight = fields[7] as String
-      ..typeofpokemon = (fields[8] as List).cast<String>()
-      ..weaknesses = (fields[9] as List).cast<String>()
-      ..evolutions = (fields[10] as List).cast<String>()
-      ..abilities = (fields[11] as List).cast<String>()
-      ..hp = fields[12] as int
-      ..attack = fields[13] as int
-      ..defense = fields[14] as int
-      ..special_attack = fields[15] as int
-      ..special_defense = fields[16] as int
-      ..speed = fields[17] as int
-      ..total = fields[18] as int
-      ..male_percentage = fields[19] as String
-      ..female_percentage = fields[20] as String
-      ..genderless = fields[21] as int
-      ..cycles = fields[22] as String
-      ..egg_groups = fields[23] as String
-      ..evolvedfrom = fields[24] as String
-      ..reason = fields[25] as String
-      ..base_exp = fields[26] as String;
+    return PokemonModel(
+      name: fields[1] as String?,
+      id: fields[2] as String?,
+      imageurl: fields[3] as String?,
+      xdescription: fields[4] as String?,
+      ydescription: fields[5] as String?,
+      height: fields[6] as String?,
+      category: fields[7] as String?,
+      weight: fields[8] as String?,
+      typeofpokemon: (fields[9] as List?)?.cast<String>(),
+      weaknesses: (fields[10] as List?)?.cast<String>(),
+      evolutions: (fields[11] as List?)?.cast<String>(),
+      abilities: (fields[12] as List?)?.cast<String>(),
+      hp: fields[13] as int?,
+      attack: fields[14] as int?,
+      defense: fields[15] as int?,
+      specialAttack: fields[16] as int?,
+      specialDefense: fields[17] as int?,
+      speed: fields[18] as int?,
+      total: fields[19] as int?,
+      malePercentage: fields[20] as String?,
+      femalePercentage: fields[21] as String?,
+      genderless: fields[22] as int?,
+      cycles: fields[23] as String?,
+      eggGroups: fields[24] as String?,
+      evolvedfrom: fields[25] as String?,
+      reason: fields[26] as String?,
+      baseExp: fields[27] as String?,
+    );
   }
 
   @override
-  void write(BinaryWriter writer, PokemonHiveModel obj) {
+  void write(BinaryWriter writer, PokemonModel obj) {
     writer
       ..writeByte(27)
-      ..writeByte(0)
-      ..write(obj.name)
       ..writeByte(1)
-      ..write(obj.id)
+      ..write(obj.name)
       ..writeByte(2)
-      ..write(obj.imageurl)
+      ..write(obj.id)
       ..writeByte(3)
-      ..write(obj.xdescription)
+      ..write(obj.imageurl)
       ..writeByte(4)
-      ..write(obj.ydescription)
+      ..write(obj.xdescription)
       ..writeByte(5)
-      ..write(obj.height)
+      ..write(obj.ydescription)
       ..writeByte(6)
-      ..write(obj.category)
+      ..write(obj.height)
       ..writeByte(7)
-      ..write(obj.weight)
+      ..write(obj.category)
       ..writeByte(8)
-      ..write(obj.typeofpokemon)
+      ..write(obj.weight)
       ..writeByte(9)
-      ..write(obj.weaknesses)
+      ..write(obj.typeofpokemon)
       ..writeByte(10)
-      ..write(obj.evolutions)
+      ..write(obj.weaknesses)
       ..writeByte(11)
-      ..write(obj.abilities)
+      ..write(obj.evolutions)
       ..writeByte(12)
-      ..write(obj.hp)
+      ..write(obj.abilities)
       ..writeByte(13)
-      ..write(obj.attack)
+      ..write(obj.hp)
       ..writeByte(14)
-      ..write(obj.defense)
+      ..write(obj.attack)
       ..writeByte(15)
-      ..write(obj.special_attack)
+      ..write(obj.defense)
       ..writeByte(16)
-      ..write(obj.special_defense)
+      ..write(obj.specialAttack)
       ..writeByte(17)
-      ..write(obj.speed)
+      ..write(obj.specialDefense)
       ..writeByte(18)
-      ..write(obj.total)
+      ..write(obj.speed)
       ..writeByte(19)
-      ..write(obj.male_percentage)
+      ..write(obj.total)
       ..writeByte(20)
-      ..write(obj.female_percentage)
+      ..write(obj.malePercentage)
       ..writeByte(21)
-      ..write(obj.genderless)
+      ..write(obj.femalePercentage)
       ..writeByte(22)
-      ..write(obj.cycles)
+      ..write(obj.genderless)
       ..writeByte(23)
-      ..write(obj.egg_groups)
+      ..write(obj.cycles)
       ..writeByte(24)
-      ..write(obj.evolvedfrom)
+      ..write(obj.eggGroups)
       ..writeByte(25)
-      ..write(obj.reason)
+      ..write(obj.evolvedfrom)
       ..writeByte(26)
-      ..write(obj.base_exp);
+      ..write(obj.reason)
+      ..writeByte(27)
+      ..write(obj.baseExp);
   }
 
   @override
@@ -112,7 +113,7 @@ class PokemonHiveModelAdapter extends TypeAdapter<PokemonHiveModel> {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      other is PokemonHiveModelAdapter &&
+      other is PokemonModelAdapter &&
           runtimeType == other.runtimeType &&
           typeId == other.typeId;
 }
